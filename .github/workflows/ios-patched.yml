@@ -53,6 +53,22 @@ jobs:
         run: |
           gomobile init
 
+      - name: Patch olcrtc handshake timeout
+        working-directory: olcrtc
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          p = Path("internal/handshake/handshake.go")
+          s = p.read_text()
+          s = s.replace(
+              "const DefaultTimeout = 15 * time.Second",
+              "const DefaultTimeout = 60 * time.Second",
+          )
+          p.write_text(s)
+          print("patched olcrtc handshake timeout to 60s")
+          PY
+
       - name: Fix Gradle permissions
         working-directory: olcbox
         run: |
