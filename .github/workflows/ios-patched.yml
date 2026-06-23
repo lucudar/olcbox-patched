@@ -2,6 +2,8 @@ name: Build patched iOS IPA
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   build-ios:
@@ -9,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout olcbox
-        uses: actions/checkout@v7
+        uses: actions/checkout@v6
         with:
           path: olcbox
 
       - name: Checkout olcrtc
-        uses: actions/checkout@v7
+        uses: actions/checkout@v6
         with:
           repository: openlibrecommunity/olcrtc
           ref: master
@@ -51,7 +53,12 @@ jobs:
         run: |
           gomobile init
 
-      - name: Fix Gradle permissions`n        working-directory: olcbox`n        run: |`n          chmod +x gradlew`n`n      - name: Build unsigned iOS app
+      - name: Fix Gradle permissions
+        working-directory: olcbox
+        run: |
+          chmod +x gradlew
+
+      - name: Build unsigned iOS app
         working-directory: olcbox
         run: |
           export OLCRTC_REPO="${GITHUB_WORKSPACE}/olcrtc"
