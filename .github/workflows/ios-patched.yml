@@ -51,7 +51,7 @@ jobs:
         run: |
           gomobile init
 
-      - name: Build unsigned iOS app
+      - name: Fix Gradle permissions`n        working-directory: olcbox`n        run: |`n          chmod +x gradlew`n`n      - name: Build unsigned iOS app
         working-directory: olcbox
         run: |
           export OLCRTC_REPO="${GITHUB_WORKSPACE}/olcrtc"
