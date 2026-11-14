@@ -3,7 +3,7 @@
 kotlin = "2.4.21-439"
 datastorePreferences = "1.3.0"
 compose-multiplatform = "1.12.2"
-material3 = "1.13.0-beta01"
+material3 = "1.13.0-beta02"
 agp = "9.5.1"
 androidx-activityCompose = "1.13.0"
 androidx-core = "1.19.1"
